@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.20",
+    "@craco/craco": "^6.1.2",
+    "@headlessui/react": "^1.6.0",
+    "@heroicons/react": "^1.0.6",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/typography": "^0.4.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,16 +17,24 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "antd": "^4.16.13",
+    "graphql": "^15.5.0",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-hot-toast": "^2.2.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-spinners-kit": "^1.9.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +54,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@types/lodash": "^4.14.182",
+    "@types/react-router-dom": "^5.1.8",
+    "autoprefixer": "^9",
+    "husky": "^6.0.0",
+    "postcss": "^7",
+    "ts-node": "^10.0.0"
   }
 }

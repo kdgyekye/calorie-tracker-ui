@@ -1,0 +1,7 @@
+export const LOGIN = "/login"
+export const MAIN_LAYOUT = "*"
+export const DASHBOARD = "/"
+export const FOOD_ENTRIES = "/food-entries"
+export const MEALS = "/meals"
+export const REPORTS = "/reports"
+export const NOT_FOUND = "/not-found"
