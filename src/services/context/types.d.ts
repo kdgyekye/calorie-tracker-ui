@@ -2,19 +2,18 @@ export interface CurrentUserOutputProps {
     currentUser: User;
   }
 
-  type AdminRole = "ADMINISTRATOR" | "USER";
+  export type LimitReached = {
+    calories: number;
+    reachedAt: Date;
+}
+
+  type AdminRole = "ADMIN" | "USER";
 
   export interface User {
     _id: string;
-    code: string;
-    username: string;
     name: string;
     email: string;
-    phone: string;
-    country: Country;
-    photograph: string;
-    suspended: boolean;
-    role: AdminRole;
-    createdAt: Date;
-    updatedAt: Date;
+    role: AdminRole
+    limit: number;
+    limitReached: LimitReached[];
   }

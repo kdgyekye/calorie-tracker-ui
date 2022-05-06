@@ -52,7 +52,7 @@ const Header: FC<Props> = ({ setMobileMenuOpen }) => {
                         />
                         <div className={"flex ml-2 flex-col items-start"}>
                           <h1 className={"text-sm"}>
-                            {userData?.role === "ADMINISTRATOR"
+                            {userData?.role === "ADMIN"
                               ? "Admin"
                               : "User"}
                           </h1>

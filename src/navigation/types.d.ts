@@ -8,7 +8,7 @@ export interface RouteProp {
   role: AdminRole[];
 }
 
-export type AdminRole = "ADMINISTRATOR" | "USER";
+export type AdminRole = "ADMIN" | "USER";
 
 export interface NavigationProp {
   href: string;

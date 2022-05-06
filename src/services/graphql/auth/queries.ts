@@ -8,6 +8,10 @@ export const CURRENT_USER = gql`
         email
         role
         limit
+        limitReached {
+          calories
+          reachedAt
+        }
         createdAt
         updatedAt
       }

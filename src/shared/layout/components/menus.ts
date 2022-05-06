@@ -14,27 +14,21 @@ import {
 
 export const navigation:NavigationProp[] = [
     {
-        href: DASHBOARD,
-        icon: ChartPieIcon,
-        name: "Dashboard",
-        role: ["ADMINISTRATOR", "USER"]
-    },
-    {
         href: FOOD_ENTRIES,
         icon: CakeIcon,
         name: "Food Entries",
-        role: ["ADMINISTRATOR", "USER"]
+        role: ["ADMIN", "USER"]
+    },
+    {
+        href: DASHBOARD,
+        icon: ChartPieIcon,
+        name: "Reports",
+        role: ["ADMIN"]
     },
     {
         href: MEALS,
         icon: CollectionIcon,
         name: "Meals",
-        role: ["ADMINISTRATOR", "USER"]
-    }, 
-    {
-        href: REPORTS,
-        icon: DocumentReportIcon,
-        name: "Reports",
-        role: ["ADMINISTRATOR"]
-    }
+        role: ["ADMIN", "USER"]
+    },
 ]

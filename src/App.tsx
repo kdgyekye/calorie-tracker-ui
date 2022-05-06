@@ -7,7 +7,7 @@ const App = () => {
       <>
         <AppNavigation />
         <Toaster
-            position={"bottom-center"}
+            position={"top-center"}
             reverseOrder={false}
             toastOptions={{
               // Define default options

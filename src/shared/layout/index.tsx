@@ -24,7 +24,6 @@ const Layout = () => {
     setisInRoute(isIn ? true : false);
   }, [pathname]);
 
-  console.log(isInRoute)
   return isInRoute ? (
     // return (
     <Fragment>
@@ -43,17 +42,21 @@ const Layout = () => {
                 <Routes>
                   {routes.map((route: RouteProp, i: number) => {
                     if (route?.role?.includes(userData?.role as AdminRole)) {
-                      console.log('route', route, " userData", userData)
                       return (
-
-                            <Route
-                                key={i}
-                                path={route.path}
-                                element={<route.component />}
-                            />
-
-                      )
-                    } else { return null }
+                          <Fragment key={i}>
+                            {route.role ? (
+                                <Route
+                                    path={route.path}
+                                    element={<route.component />}
+                                />
+                            ) : (
+                                <Navigate key={i} to="/login" replace />
+                            )}
+                          </Fragment>
+                      );
+                    } else {
+                      return null;
+                    }
                   })}
                   {/* handle 404s */}
                   <Route element={<HandleNotFound />} path={NOT_FOUND} />
