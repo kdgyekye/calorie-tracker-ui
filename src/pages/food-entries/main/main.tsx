@@ -20,7 +20,7 @@ import { PlusCircleIcon } from "@heroicons/react/solid";
 //import { useCurrentUser } from "../../../services/context/currentUser";
 import FoodCard from "../components/food-card";
 import toast from "react-hot-toast";
-import  DateRangePicker from "../../../components/ui-modules/date-rangepicker"
+import DateRangePicker from "../../../components/ui-modules/date-rangepicker";
 
 const AddFoodEntry = lazy(() => import("../add/add"));
 
@@ -35,18 +35,18 @@ const FoodEntries = () => {
   const [selectedLimit, setSelectedLimit] = useState(limits[0]);
   const { limit, setLimit, setSkip, skip } = usePagination(selectedLimit);
   const [search, setSearch] = useState("");
-  const [dateRange, setDateRange] = useState<any>()
+  const [dateRange, setDateRange] = useState<any>();
   const [showAdd, setShowAdd] = useState(false);
   const [update, setUpdate] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<IFoodEntry>();
 
   //const user = useCurrentUser();
 
-//   const CALORIE_LIMIT = user?.limit;
-//   //const [calorieTreshold, setCalorieTreshold] = useState<number>(0);
-//   const [calorieTresholdReached, setCalorieTresholdReached] = useState<
-//     LimitReached[]
-//   >([]);
+  //   const CALORIE_LIMIT = user?.limit;
+  //   //const [calorieTreshold, setCalorieTreshold] = useState<number>(0);
+  //   const [calorieTresholdReached, setCalorieTresholdReached] = useState<
+  //     LimitReached[]
+  //   >([]);
 
   const {
     data: foodEntries,
@@ -55,7 +55,7 @@ const FoodEntries = () => {
   } = useQuery(GET_FOOD_ENTRIES, {
     variables: {
       pagination: { skip, limit },
-	  populate: ["meal"]
+      populate: ["meal", "user"],
     },
   });
 
@@ -65,78 +65,78 @@ const FoodEntries = () => {
   >(UPDATE_USER);
 
   //get calories from food entries
-//   const getCaloriesLimitReached = () => {
-//     const today = new Date();
-//     let calories = 0;
+  //   const getCaloriesLimitReached = () => {
+  //     const today = new Date();
+  //     let calories = 0;
 
-//     //get food entries for a particular day
-//     let todayEntries = foodEntries?.foodEntries?.filter((entry: IFoodEntry) => {
-//       const date = new Date(entry.createdAt);
-//       return date.toDateString() === today.toDateString();
-//     });
-// 	console.log(todayEntries)
+  //     //get food entries for a particular day
+  //     let todayEntries = foodEntries?.foodEntries?.filter((entry: IFoodEntry) => {
+  //       const date = new Date(entry.createdAt);
+  //       return date.toDateString() === today.toDateString();
+  //     });
+  // 	console.log(todayEntries)
 
-//     //Get calories from food entries
-//     todayEntries?.forEach((foodEntry: IFoodEntry) => {
-//       calories += foodEntry.calorieValue;
-//     });
-//     if (calories > CALORIE_LIMIT) {
-//       toast.error(`You have reached your calorie limit of ${CALORIE_LIMIT}`);
+  //     //Get calories from food entries
+  //     todayEntries?.forEach((foodEntry: IFoodEntry) => {
+  //       calories += foodEntry.calorieValue;
+  //     });
+  //     if (calories > CALORIE_LIMIT) {
+  //       toast.error(`You have reached your calorie limit of ${CALORIE_LIMIT}`);
 
-//       //make copy of caloriesTresholdReached state into an array
-//       const newReachedArray = [...calorieTresholdReached];
+  //       //make copy of caloriesTresholdReached state into an array
+  //       const newReachedArray = [...calorieTresholdReached];
 
-//       //check if the calorie limit has been reached for the day
-//       const todayEntryReached = newReachedArray.findIndex((entry: any) => {
-//         return entry?.reachedAt?.toDateString() === today.toDateString();
-//       });
+  //       //check if the calorie limit has been reached for the day
+  //       const todayEntryReached = newReachedArray.findIndex((entry: any) => {
+  //         return entry?.reachedAt?.toDateString() === today.toDateString();
+  //       });
 
-//       //if the calorie limit has been reached for the day, update it in the array, else,
-//       //add the date to the array
-//       if (todayEntryReached >= 0) {
-//         console.log("yes");
-//         newReachedArray[todayEntryReached].calories = calories;
-//         setCalorieTresholdReached(newReachedArray);
-//         invokeUpdateUser({
-//           variables: {
-//             input: {
-//               limitReached: newReachedArray,
-//             },
-//           },
-//         });
-//       } else {
-//         console.log("no");
-//         setCalorieTresholdReached([
-//           ...calorieTresholdReached,
-//           {
-//             calories: calories,
-//             reachedAt: today,
-//           },
-//         ]);
-//         invokeUpdateUser({
-//           variables: {
-//             input: {
-//               limitReached: [
-//                 ...calorieTresholdReached,
-//                 {
-//                   calories: calories,
-//                   reachedAt: today,
-//                 },
-//               ],
-//             },
-//           },
-//         });
-//       }
-//     }
-//   };
+  //       //if the calorie limit has been reached for the day, update it in the array, else,
+  //       //add the date to the array
+  //       if (todayEntryReached >= 0) {
+  //         console.log("yes");
+  //         newReachedArray[todayEntryReached].calories = calories;
+  //         setCalorieTresholdReached(newReachedArray);
+  //         invokeUpdateUser({
+  //           variables: {
+  //             input: {
+  //               limitReached: newReachedArray,
+  //             },
+  //           },
+  //         });
+  //       } else {
+  //         console.log("no");
+  //         setCalorieTresholdReached([
+  //           ...calorieTresholdReached,
+  //           {
+  //             calories: calories,
+  //             reachedAt: today,
+  //           },
+  //         ]);
+  //         invokeUpdateUser({
+  //           variables: {
+  //             input: {
+  //               limitReached: [
+  //                 ...calorieTresholdReached,
+  //                 {
+  //                   calories: calories,
+  //                   reachedAt: today,
+  //                 },
+  //               ],
+  //             },
+  //           },
+  //         });
+  //       }
+  //     }
+  //   };
 
-//   console.log(calorieTresholdReached);
+  //   console.log(calorieTresholdReached);
 
-//   useEffect(() => {
-//     getCaloriesLimitReached();
-//     console.log("getting");
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [foodEntries]);
+  //   useEffect(() => {
+  //     getCaloriesLimitReached();
+  //     console.log("getting");
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, [foodEntries]);
 
   useEffect(() => {
     setLimit(selectedLimit);
@@ -145,21 +145,20 @@ const FoodEntries = () => {
     <Fragment>
       <div className={"mt-3 px-6 flex flex-row items-center justify-between"}>
         <div>
-          {
-			  selectedFilter.id === 2 ?
-			  <SearchBar
-				type="text"
-				value={search}
-				onChange={(e: any) => setSearch(e?.target?.value)}
-				placeholder="Search for data"
-				/>
-				:
-				<DateRangePicker
-					setDates={setDateRange}
-					dates={dateRange}
-					disabled={false}
-				/>
-		  }  
+          {selectedFilter.id === 2 ? (
+            <SearchBar
+              type="text"
+              value={search}
+              onChange={(e: any) => setSearch(e?.target?.value)}
+              placeholder="Search for data"
+            />
+          ) : (
+            <DateRangePicker
+              setDates={setDateRange}
+              dates={dateRange}
+              disabled={false}
+            />
+          )}
         </div>
 
         <div className={"flex flex-row items-center"}>
@@ -179,7 +178,10 @@ const FoodEntries = () => {
           </div>
           <div>
             <div
-              onClick={() => setShowAdd(true)}
+              onClick={() => {
+                setUpdate(false)
+                setShowAdd(true)
+              }}
               //type="button"
               className="inline-flex cursor-pointer text-white hover:text-white items-center px-4 py-3 border border-transparent shadow-sm text-sm font-medium rounded-md bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             >
@@ -214,13 +216,15 @@ const FoodEntries = () => {
                       (foodEntry: any, idx: number) => (
                         <FoodCard
                           key={idx}
+                          _id={foodEntry._id}
                           name={foodEntry?.food}
                           calories={foodEntry?.calorieValue}
                           date={foodEntry?.createdAt}
-						  meal={foodEntry?.meal?.name}
-						  setShowAdd={setShowAdd}
-						  setUpdate={setUpdate}
-						  setSelectedEntry={setSelectedEntry}
+                          meal={foodEntry?.meal}
+                          user={foodEntry?.user}
+                          setShowAdd={setShowAdd}
+                          setUpdate={setUpdate}
+                          setSelectedEntry={setSelectedEntry}
                         />
                       )
                     )}
@@ -241,13 +245,13 @@ const FoodEntries = () => {
           </Fragment>
         )}
       </div>
-      <AddFoodEntry 
-		show={showAdd} 
-		setShow={setShowAdd} 
-		refetch={refetch} 
-		update={update} 
-		data={selectedEntry} 
-	  />
+      <AddFoodEntry
+        show={showAdd}
+        setShow={setShowAdd}
+        refetch={refetch}
+        update={update}
+        data={selectedEntry}
+      />
     </Fragment>
   );
 };

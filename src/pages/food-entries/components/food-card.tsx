@@ -3,23 +3,33 @@ import { EyeIcon, PencilAltIcon } from "@heroicons/react/outline";
 import { useCurrentUser } from "../../../services/context/currentUser";
 
 interface IFoodProps {
+  _id: string;
   name: string;
   calories: number;
   date: string;
-  meal: string;
+  meal: {
+    name: string;
+    _id: string;
+  };
+  user: {
+    name: string;
+    _id: string;
+  };
   setShowAdd: React.Dispatch<React.SetStateAction<boolean>>;
   setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedEntry: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const FoodCard: FC<IFoodProps> = ({
+  _id,
   name,
   calories,
   date,
   meal,
+  user,
   setShowAdd,
   setUpdate,
-  setSelectedEntry
+  setSelectedEntry,
 }) => {
   const currentUser = useCurrentUser();
   const foodImage =
@@ -35,7 +45,7 @@ const FoodCard: FC<IFoodProps> = ({
         <div className={"absolute top-4 -right-3"}>
           <div className="flex flex-col items-center text-white px-2 py-1 bg-blue-600 rounded-full">
             <span style={{ fontSize: "0.7rem" }} className="mr-3 font-light">
-              {meal || "Not Specified"}
+              {meal?.name || "Not Specified"}
             </span>
           </div>
         </div>
@@ -67,18 +77,20 @@ const FoodCard: FC<IFoodProps> = ({
               onClick={() => {
                 setShowAdd(true);
                 setUpdate(true);
-				setSelectedEntry({
-					name,
-					calories,
-					date,
-					meal,
-				});
+                setSelectedEntry({
+                  _id,
+                  name,
+                  calories,
+                  date,
+                  meal,
+                  user
+                });
               }}
             >
-              <div className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:bg-orange-500 hover:text-gray-100">
+              <button className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:bg-orange-500 hover:text-gray-100">
                 <PencilAltIcon className="w-5 h-5" aria-hidden="true" />
                 <span className="ml-3">Update</span>
-              </div>
+              </button>
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ export interface ICreateFoodEntryResponse {
 
 export interface IUpdateFoodEntryInput {
   input: {
+    _id: string;
     food: string;
     meal: string;
     calorieValue: number;

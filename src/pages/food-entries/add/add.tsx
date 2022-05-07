@@ -93,14 +93,10 @@ const AddFoodEntry: FC<IAddFoodEntryProps> = ({
     console.log(userSearch);
     getUsers({
       variables: {
-        filter: userSearch
-          ? {
+        filter: {
               name: userSearch,
               role: "USER",
             }
-          : {
-              role: "USER",
-            },
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,12 +104,22 @@ const AddFoodEntry: FC<IAddFoodEntryProps> = ({
 
   useEffect(() => {
     if (update) {
-      setName(data?.food);
-      setCalories(data?.calorieValue);
-      setMeal(data?.meal?._id);
-      setSelectedUser(data?.user);
+      if (data) {
+        setName(data?.name);
+        setCalories(data?.calories);
+        setMeal(data?.meal?._id);
+        setSelectedUser(data?.user);
+      }
     }
-  }, [data]);
+    else {
+      setName("")
+      setCalories(0)
+      setMeal("")
+      setSelectedUser("")
+    }
+  }, [data, update]);
+
+  console.log(data)
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -126,17 +132,24 @@ const AddFoodEntry: FC<IAddFoodEntryProps> = ({
           input:
             currentUser?.role === "USER"
               ? {
+                  _id: data?._id,
                   food: name,
                   calorieValue: calories,
                   meal,
                 }
               : {
+                  _id: data?._id,
                   food: name,
                   calorieValue: calories,
                   meal,
                   user: selectedUser._id,
                 },
         },
+      }).then(() => {
+        refetch();
+        setShow(false);
+        toast.success("Food entry updated successfully");
+        resetState();
       });
     } else {
       invokeCreateFoodEntry({
