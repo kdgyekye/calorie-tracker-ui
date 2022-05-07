@@ -64,7 +64,6 @@ import React, {
 
     useEffect(() => {
       let userToken: string | null = Auth.getCipher();
-      console.log(!!userToken, ": ", userToken)
       let data;
       if (userToken) data = JSON.parse(userToken);
       else data = null;
@@ -73,9 +72,9 @@ import React, {
 
     const authContextController = useMemo(
       () => ({
-        signIn: async (token: any): Promise<void> => {
-          Auth.setCipher(JSON.stringify(token?.token));
-          dispatch({ type: "SIGN_IN", userToken: token?.admin });
+        signIn: async (data: any): Promise<void> => {
+          Auth.setCipher(JSON.stringify(data?.token));
+          dispatch({ type: "SIGN_IN", userToken: data?.token });
         },
         signOut: (): void => {
           Auth.clearCipher();

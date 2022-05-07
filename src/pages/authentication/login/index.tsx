@@ -48,8 +48,10 @@ const Login = () => {
       },
     })
       .then(async ({ data }) => {
+		  console.log("data: ",data)
         await signIn(data?.loginUser);
-        return (window.location.pathname = "/");
+        if (data?.loginUser?.user?.role === "ADMIN") return (window.location.pathname = "/");
+		else return (window.location.pathname = "/food-entries");
       })
       .catch((e: ApolloError) => {
         toast.error(_.startCase(_.lowerCase(e?.graphQLErrors[0]?.message)));

@@ -8,6 +8,6 @@ export interface LoginInputProps {
 export interface LoginOutputProps {
 	loginUser: {
 		token: string;
-		admin: Admin;
+		user: Admin;
 	};
 }
