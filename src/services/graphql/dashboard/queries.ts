@@ -11,3 +11,19 @@ export const GET_ENTRIES_TWO_WEEKS = gql`
         sumLastTwoWeeksEntries
     }
 `
+
+export const GET_LAST_WEEK_AVERAGE_ENTRIES = gql`
+    query AverageLastWeekEntries {
+  averageLastWeekEntries {
+    _id
+    total
+    avg
+    user {
+      name
+      email
+      role
+      _id
+    }
+  }
+}
+`

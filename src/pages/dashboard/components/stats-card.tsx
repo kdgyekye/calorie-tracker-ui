@@ -10,7 +10,7 @@ interface IStatsCardProps {
 
 const StatsCard: React.FC<IStatsCardProps> = ({ title, value, loading }) => {
   return (
-    <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-none border border-gray-200 rounded-none overflow-hidden">
+    <dl className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-none border border-gray-200 rounded-none overflow-hidden">
       <dt>
         <div className="absolute bg-blue-100 rounded-md p-3">
           <DocumentReportIcon
@@ -36,7 +36,7 @@ const StatsCard: React.FC<IStatsCardProps> = ({ title, value, loading }) => {
         </div>
         <div className="absolute bottom-0 inset-x-0 bg-gray-100 px-4 py-4 sm:px-6" />
       </dd>
-    </div>
+    </dl>
   );
 };
 
