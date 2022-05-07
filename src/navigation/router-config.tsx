@@ -17,12 +17,15 @@ const RouterConfig: React.FC = () => {
         <React.Suspense fallback={CenterLoader()}>
           <Routes>
             <Route element={<LoginPage />} path={LOGIN} />
-            {/* handle 404s */}
             <Route element={<HandleNotFound />} path={NOT_FOUND} />
+            <Route element= {
+              <CurrentUser>
+                <PrivateRoute component={Layout} path={MAIN_LAYOUT} />
+              </CurrentUser>
+            }
+            path={MAIN_LAYOUT} />
           </Routes>
-          <CurrentUser>
-            <PrivateRoute component={Layout} path={MAIN_LAYOUT} />
-          </CurrentUser>
+          
         </React.Suspense>
       </BrowserRouter>
     </React.Fragment>

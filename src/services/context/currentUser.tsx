@@ -14,7 +14,9 @@ export const CurrentUserContext = React.createContext<User | undefined>(
 
 const CurrentUserComponent: React.FC<CurrentUserComponentProps> = ( { children }) => {
   const { data, loading } = useQuery<CurrentUserOutputProps, any>(
-    CURRENT_USER
+    CURRENT_USER, {
+      fetchPolicy: "no-cache"
+    }
   );
 
   console.log(data)

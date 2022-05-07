@@ -1,3 +1,4 @@
+import React from 'react'
 import { Route, Routes, Navigate } from "react-router-dom";
 import Auth from "./cookie.config";
 
@@ -7,10 +8,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             element={
-                !Auth.getCipher()?
-                <Navigate to="/login" replace />
-                :
-                <Component />
+                <React.Fragment>
+                  {
+                    !Auth.getCipher()?
+                    <Navigate to="/login" />
+                    :
+                    <Component />
+                  }
+                </React.Fragment>
             }
         />
     </Routes>

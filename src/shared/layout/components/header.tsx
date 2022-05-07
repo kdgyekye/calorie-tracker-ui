@@ -16,6 +16,7 @@ const Header: FC<Props> = ({ setMobileMenuOpen }) => {
   const userData = useCurrentUser();
   const [logout, setLogout] = useState(false)
 
+  console.log(userData)
   return (
     <Fragment>
       <header className="w-full">

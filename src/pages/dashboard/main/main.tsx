@@ -17,7 +17,7 @@ const Dashboard = () => {
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
             <StatsCard
               title="Total Entries From Past Week"
-              value={weekData}
+              value={weekData?.sumLastWeekEntries}
               loading={weekLoading}
             />
             <StatsCard
