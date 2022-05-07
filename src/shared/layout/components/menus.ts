@@ -3,7 +3,7 @@ import {
     DASHBOARD,
     FOOD_ENTRIES,
     MEALS,
-    REPORTS
+    STATISTICS
 } from "../../../navigation/constants"
 import {
     ChartPieIcon,
@@ -14,21 +14,27 @@ import {
 
 export const navigation:NavigationProp[] = [
     {
-        href: FOOD_ENTRIES,
-        icon: CakeIcon,
-        name: "Food Entries",
-        role: ["ADMIN", "USER"]
-    },
-    {
         href: DASHBOARD,
         icon: ChartPieIcon,
         name: "Reports",
         role: ["ADMIN"]
     },
     {
+        href: FOOD_ENTRIES,
+        icon: CakeIcon,
+        name: "Food Entries",
+        role: ["ADMIN", "USER"]
+    },
+    {
         href: MEALS,
         icon: CollectionIcon,
         name: "Meals",
-        role: ["ADMIN", "USER"]
+        role: ["ADMIN"]
+    },
+    {
+        href: STATISTICS,
+        icon: DocumentReportIcon,
+        name: "Statistics",
+        role: ["USER"]
     },
 ]

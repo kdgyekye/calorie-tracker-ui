@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { EyeIcon, PencilAltIcon } from "@heroicons/react/outline";
+import { PencilAltIcon } from "@heroicons/react/outline";
 import { useCurrentUser } from "../../../services/context/currentUser";
 
 interface IFoodProps {

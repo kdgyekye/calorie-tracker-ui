@@ -9,9 +9,8 @@ import { IFoodEntry } from "../../../services/graphql/food-entries/types";
 import {
   IUpdateUserInput,
   IUpdateUserResponse,
-  LimitReached,
 } from "../../../services/graphql/users/types";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
 import { usePagination } from "../../../components/hooks";
 import { Dropdown } from "../../../components/ui-modules/dropdown";
 import { PaginationDropdown } from "../../../components/ui-modules/paginationDropdown";
@@ -20,6 +19,7 @@ import { PlusCircleIcon } from "@heroicons/react/solid";
 //import { useCurrentUser } from "../../../services/context/currentUser";
 import FoodCard from "../components/food-card";
 import toast from "react-hot-toast";
+import { HAS_EXCEEDED_LIMIT } from "../../../services/graphql/user-stats/queries";
 import DateRangePicker from "../../../components/ui-modules/date-rangepicker";
 
 const AddFoodEntry = lazy(() => import("../add/add"));
@@ -39,6 +39,7 @@ const FoodEntries = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [update, setUpdate] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<IFoodEntry>();
+  const [newUserLimit, setNewUserLimit] = useState();
 
   //const user = useCurrentUser();
 
@@ -59,84 +60,40 @@ const FoodEntries = () => {
     },
   });
 
-  const [invokeUpdateUser, { loading: updatingUser }] = useMutation<
+  const [getHasExceedLimit, { data: hasExceededLimit }] = useLazyQuery(HAS_EXCEEDED_LIMIT)
+
+  const [invokeUpdateUser] = useMutation<
     IUpdateUserResponse,
     IUpdateUserInput
   >(UPDATE_USER);
 
-  //get calories from food entries
-  //   const getCaloriesLimitReached = () => {
-  //     const today = new Date();
-  //     let calories = 0;
+  useEffect(() => {
+    getHasExceedLimit()
+    if (hasExceededLimit?.hasExceededLimitToday) {
+      console.log("here")
+      toast.error("You have exceeded your calorie limit");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[foodEntries])
 
-  //     //get food entries for a particular day
-  //     let todayEntries = foodEntries?.foodEntries?.filter((entry: IFoodEntry) => {
-  //       const date = new Date(entry.createdAt);
-  //       return date.toDateString() === today.toDateString();
-  //     });
-  // 	console.log(todayEntries)
+  const changeUserLimit = () => {
+    invokeUpdateUser({
+      variables: {
+        input: {
+          limit: newUserLimit,
+        },
+      },
+    }).then(() => {
+      refetch();
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
-  //     //Get calories from food entries
-  //     todayEntries?.forEach((foodEntry: IFoodEntry) => {
-  //       calories += foodEntry.calorieValue;
-  //     });
-  //     if (calories > CALORIE_LIMIT) {
-  //       toast.error(`You have reached your calorie limit of ${CALORIE_LIMIT}`);
-
-  //       //make copy of caloriesTresholdReached state into an array
-  //       const newReachedArray = [...calorieTresholdReached];
-
-  //       //check if the calorie limit has been reached for the day
-  //       const todayEntryReached = newReachedArray.findIndex((entry: any) => {
-  //         return entry?.reachedAt?.toDateString() === today.toDateString();
-  //       });
-
-  //       //if the calorie limit has been reached for the day, update it in the array, else,
-  //       //add the date to the array
-  //       if (todayEntryReached >= 0) {
-  //         console.log("yes");
-  //         newReachedArray[todayEntryReached].calories = calories;
-  //         setCalorieTresholdReached(newReachedArray);
-  //         invokeUpdateUser({
-  //           variables: {
-  //             input: {
-  //               limitReached: newReachedArray,
-  //             },
-  //           },
-  //         });
-  //       } else {
-  //         console.log("no");
-  //         setCalorieTresholdReached([
-  //           ...calorieTresholdReached,
-  //           {
-  //             calories: calories,
-  //             reachedAt: today,
-  //           },
-  //         ]);
-  //         invokeUpdateUser({
-  //           variables: {
-  //             input: {
-  //               limitReached: [
-  //                 ...calorieTresholdReached,
-  //                 {
-  //                   calories: calories,
-  //                   reachedAt: today,
-  //                 },
-  //               ],
-  //             },
-  //           },
-  //         });
-  //       }
-  //     }
-  //   };
-
-  //   console.log(calorieTresholdReached);
-
-  //   useEffect(() => {
-  //     getCaloriesLimitReached();
-  //     console.log("getting");
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [foodEntries]);
+  useEffect(() => {
+    changeUserLimit()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[setNewUserLimit])
 
   useEffect(() => {
     setLimit(selectedLimit);
@@ -179,8 +136,8 @@ const FoodEntries = () => {
           <div>
             <div
               onClick={() => {
-                setUpdate(false)
-                setShowAdd(true)
+                setUpdate(false);
+                setShowAdd(true);
               }}
               //type="button"
               className="inline-flex cursor-pointer text-white hover:text-white items-center px-4 py-3 border border-transparent shadow-sm text-sm font-medium rounded-md bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"

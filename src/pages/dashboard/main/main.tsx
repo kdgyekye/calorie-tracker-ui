@@ -51,7 +51,7 @@ const Dashboard = () => {
           </div>
           <div className="grid grid-cols-1 gap-3 sm:gap-5 sm:grid-cols-2 xl:grid-cols-4 mt-3">
             <div
-              style={{ height: "50vh" }}
+              style={{ height: "55vh" }}
               className="relative col-span-2 border overflow-y-scroll overflow-x-hidden flex shadow-none border-gray-200 bg-white"
             >
               {lastWeekLoading ? (
@@ -64,7 +64,7 @@ const Dashboard = () => {
                         <div
                           className={`flex justify-center w-full items-center`}
                         >
-                          <EmptyAlert emptyMessage={"user.emptyMessage"} />
+                          <EmptyAlert emptyMessage={"There is no data yet"} />
                         </div>
                       ) : (
                         <DataView data={lastWeekData?.averageLastWeekEntries} />
@@ -74,7 +74,7 @@ const Dashboard = () => {
                     <ErrorAlert
                       reload={() => null}
                       canReload={false}
-                      model={"User"}
+                      model={"Dashboard"}
                     />
                   )}
                 </Fragment>

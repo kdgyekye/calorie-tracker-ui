@@ -28,7 +28,7 @@ import {
   ICreateFoodEntryResponse,
   IUpdateFoodEntryInput,
   IUpdateFoodEntryResponse,
-  IFoodEntry,
+  //IFoodEntry,
 } from "../../../services/graphql/food-entries/types";
 import { BasicModal } from "../../../components/modals";
 import { CircleSpinner } from "react-spinners-kit";
@@ -412,7 +412,7 @@ const AddFoodEntry: FC<IAddFoodEntryProps> = ({
                 disabled={loading}
                 className="inline-flex flex-row items-center px-4 py-2 border border-transparent text-sm leading-5 font-light rounded-lg text-white bg-blue-700 hover:bg-orange-600 focus:outline-none focus:shadow-outline-gray focus:border-blue-800 active:bg-blue-600 transition duration-150 ease-in-out"
               >
-                {loading ? (
+                {loading || updating ? (
                   <Fragment>
                     <CircleSpinner loading color="#fff" size={13} />
                   </Fragment>
