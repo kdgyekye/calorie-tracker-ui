@@ -1,4 +1,4 @@
-import { AlertBase } from "../../../components/modals";
+import AlertBase  from "../../../components/modals/alertModal";
 import { LogoutIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
@@ -76,4 +76,4 @@ const Logout:FC<ILogoutProps> = ({ show, setShow }) => {
   );
 };
 
-export { Logout };
+export default Logout;

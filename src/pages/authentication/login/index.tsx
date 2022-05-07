@@ -13,7 +13,7 @@ import { useAuthProvider } from "../../../services/context";
 import logo from "../../../assets/images/logo.jpg";
 
 const bgImage =
-	"https://images.unsplash.com/photo-1590931510971-48d5bbc73ba0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80";
+	"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 
 const appName = process.env.REACT_APP_NAME;
 const Login = () => {

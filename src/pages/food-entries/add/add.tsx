@@ -44,7 +44,7 @@ interface IAddFoodEntryProps {
   setShow: Dispatch<SetStateAction<boolean>>;
   refetch: () => void;
   update: boolean;
-  data?: IFoodEntry | undefined;
+  data?: any;
 }
 
 const AddFoodEntry: FC<IAddFoodEntryProps> = ({

@@ -1,4 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
+
 import { FC, Fragment } from "react";
 import { Transition } from "@headlessui/react";
 
@@ -10,7 +10,6 @@ interface Props {
 const Alert: FC<Props> = ({ show, children }) => {
   return (
     <>
-      {/* Global notification live region, render this permanently at the end of the document */}
       <div
         aria-live="assertive"
         className="fixed z-10 inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"

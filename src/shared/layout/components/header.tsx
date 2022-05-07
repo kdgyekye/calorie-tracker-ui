@@ -6,6 +6,7 @@ import userPng from "../../../assets/images/male.jpeg";
 //import { Logout } from "./logout";
 import { useCurrentUser } from "../../../services/context/currentUser";
 import { Link } from "react-router-dom";
+import Logout from "./logout"
 
 interface Props {
   setMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -13,7 +14,7 @@ interface Props {
 
 const Header: FC<Props> = ({ setMobileMenuOpen }) => {
   const userData = useCurrentUser();
-  const [, setLogout] = useState(false);
+  const [logout, setLogout] = useState(false)
 
   return (
     <Fragment>
@@ -104,7 +105,7 @@ const Header: FC<Props> = ({ setMobileMenuOpen }) => {
           </div>
         </div>
       </header>
-      {/* <Logout show={logout} setShow={setLogout} /> */}
+      <Logout show={logout} setShow={setLogout} />
     </Fragment>
   );
 };
