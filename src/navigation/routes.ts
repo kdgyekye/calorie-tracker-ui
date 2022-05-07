@@ -3,7 +3,7 @@ import { RouteProp } from "./types";
 import { DASHBOARD,
 FOOD_ENTRIES,
 MEALS,
-REPORTS } from "./constants";
+} from "./constants";
 
 const TestComponent = lazy(() => import ("../shared/layout/test-component"))
 const FoodEntries = lazy(() => import ("../pages/food-entries/main/main"))

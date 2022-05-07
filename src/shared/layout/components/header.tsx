@@ -3,9 +3,8 @@ import { Menu, Transition } from "@headlessui/react";
 import { classNames } from "../../../components/classnames";
 import { MenuAlt2Icon } from "@heroicons/react/outline";
 import userPng from "../../../assets/images/male.jpeg";
-//import { Logout } from "./logout";
 import { useCurrentUser } from "../../../services/context/currentUser";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import Logout from "./logout"
 
 interface Props {

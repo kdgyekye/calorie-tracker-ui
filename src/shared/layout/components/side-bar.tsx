@@ -21,11 +21,11 @@ const SideBar: FC<Props> = ({ mobileMenuOpen, setMobileMenuOpen }) => {
       {/* Narrow sidebar */}
       <div className="hidden w-60 bg-blue-900 overflow-y-auto scrollContainerForSidebar md:block">
         <div className="w-full py-6 flex flex-col items-center">
-          <div className="flex-shrink-0 flex w-full px-5 space-x-2 items-end">
-            <img className="h-12 rounded-lg w-auto" src={logo} alt="Workflow" />
+          <div className="flex-shrink-0 flex w-full items-center px-5 space-x-2">
+            <img className="h-16 w-auto rounded-lg bg-gray-100" src={logo} alt="Workflow" />
             <div className={`flex font-semibold text-sm text-white  flex-col`}>
-              <span>Kingsley's</span>
-              <span>Calorie Tracker</span>
+              <span>KINGSLEY'S</span>
+              <span>CALORIE TRACKER</span>
             </div>
           </div>
           <div className="flex-1 mt-6 w-full px-2 space-y-1">

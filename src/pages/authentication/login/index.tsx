@@ -75,7 +75,7 @@ const Login = () => {
           <div className="w-full">
             <div>
               <div className={"justify-center flex"}>
-                <img className="h-32 w-auto mr-3" src={logo} alt="Workflow" />
+                <img className="h-36 w-auto mr-3" src={logo} alt="Workflow" />
               </div>
               <div className={`flex mt-8 flex-col space-y-2`}>
                 <h2 className="text-3xl font-bold text-blue-800">
