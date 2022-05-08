@@ -31,6 +31,6 @@ export const GET_FOOD_ENTRIES = gql`
       createdAt
       updatedAt
     }
-    foodEntriesLength
+    foodEntriesLength(filter: $filter, startDate: $startDate, endDate: $endDate)
   }
 `;
