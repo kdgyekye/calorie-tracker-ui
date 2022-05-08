@@ -53,7 +53,7 @@ const FoodCard: FC<IFoodProps> = ({
         <dl className="mt-1 flex-grow flex flex-col justify-between">
           <dt className="sr-only">Date Taken</dt>
           <dd className="text-gray-700 text-md">
-            {new Date(date).toDateString()}
+            {new Date(date).toDateString()}, {new Date(date).toLocaleTimeString("en-US")}
           </dd>
           <dt className="sr-only">Calories</dt>
           <dd className="mt-3">

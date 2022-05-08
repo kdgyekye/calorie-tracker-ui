@@ -66,10 +66,11 @@ const FoodEntries = () => {
 
   useEffect(() => {
     if (currentUser?.role === "USER") {
-      getHasExceedLimit()
-      if (hasExceededLimit?.hasExceededLimitToday) {
-        console.log("here")
-        toast.error("You have exceeded your calorie limit");
+      getHasExceedLimit({
+        fetchPolicy: "no-cache",
+      })
+      if (hasExceededLimit?.hasUserExceededLimitToday) {
+        toast.error("You have exceeded your calorie limit for today");
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

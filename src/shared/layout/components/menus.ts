@@ -25,12 +25,12 @@ export const navigation:NavigationProp[] = [
         name: "Food Entries",
         role: ["ADMIN", "USER"]
     },
-    {
-        href: MEALS,
-        icon: CollectionIcon,
-        name: "Meals",
-        role: ["ADMIN"]
-    },
+    // {
+    //     href: MEALS,
+    //     icon: CollectionIcon,
+    //     name: "Meals",
+    //     role: ["ADMIN"]
+    // },
     {
         href: STATISTICS,
         icon: DocumentReportIcon,

@@ -26,13 +26,13 @@ const routes: RouteProp[] = [
         path: DASHBOARD,
         role: ["ADMIN"]
     },
-    {
-        name: "Meals",
-        component: TestComponent,
-        exact: true,
-        path: MEALS,
-        role: ["ADMIN", "USER"]
-    },
+    // {
+    //     name: "Meals",
+    //     component: TestComponent,
+    //     exact: true,
+    //     path: MEALS,
+    //     role: ["ADMIN"]
+    // },
     {
         name: "Statistics",
         component: UserStatistics,

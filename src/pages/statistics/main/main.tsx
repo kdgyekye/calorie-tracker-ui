@@ -48,9 +48,10 @@ const UserStatistics = () => {
           ) : (
             <div className="absolute flex justify-center items-center">
               <ErrorAlert
-                model={"Statistics"}
+                model={"calorie statistics"}
                 canReload={false}
                 reload={() => {}}
+                message={"Something went wrong. Try again later"}
               />
             </div>
           )}
