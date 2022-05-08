@@ -16,11 +16,12 @@ import { Dropdown } from "../../../components/ui-modules/dropdown";
 import { PaginationDropdown } from "../../../components/ui-modules/paginationDropdown";
 import { SearchBar } from "../../../components/ui-modules/search";
 import { PlusCircleIcon } from "@heroicons/react/solid";
-//import { useCurrentUser } from "../../../services/context/currentUser";
+import { useCurrentUser } from "../../../services/context/currentUser";
 import FoodCard from "../components/food-card";
 import toast from "react-hot-toast";
 import { HAS_EXCEEDED_LIMIT } from "../../../services/graphql/user-stats/queries";
 import DateRangePicker from "../../../components/ui-modules/date-rangepicker";
+import moment from "moment";
 
 const AddFoodEntry = lazy(() => import("../add/add"));
 
@@ -41,13 +42,7 @@ const FoodEntries = () => {
   const [selectedEntry, setSelectedEntry] = useState<IFoodEntry>();
   const [newUserLimit, setNewUserLimit] = useState();
 
-  //const user = useCurrentUser();
-
-  //   const CALORIE_LIMIT = user?.limit;
-  //   //const [calorieTreshold, setCalorieTreshold] = useState<number>(0);
-  //   const [calorieTresholdReached, setCalorieTresholdReached] = useState<
-  //     LimitReached[]
-  //   >([]);
+  const currentUser = useCurrentUser();
 
   const {
     data: foodEntries,
@@ -57,6 +52,8 @@ const FoodEntries = () => {
     variables: {
       pagination: { skip, limit },
       populate: ["meal", "user"],
+      startDate: dateRange && moment(dateRange[0]),
+      endDate: dateRange && moment(dateRange[1]),
     },
   });
 
@@ -68,13 +65,15 @@ const FoodEntries = () => {
   >(UPDATE_USER);
 
   useEffect(() => {
-    getHasExceedLimit()
-    if (hasExceededLimit?.hasExceededLimitToday) {
-      console.log("here")
-      toast.error("You have exceeded your calorie limit");
+    if (currentUser?.role === "USER") {
+      getHasExceedLimit()
+      if (hasExceededLimit?.hasExceededLimitToday) {
+        console.log("here")
+        toast.error("You have exceeded your calorie limit");
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[foodEntries])
+  },[foodEntries,currentUser])
 
   const changeUserLimit = () => {
     invokeUpdateUser({
@@ -98,6 +97,9 @@ const FoodEntries = () => {
   useEffect(() => {
     setLimit(selectedLimit);
   }, [selectedLimit, setLimit]);
+
+
+  console.log(dateRange)
   return (
     <Fragment>
       <div className={"mt-3 px-6 flex flex-row items-center justify-between"}>
@@ -113,7 +115,8 @@ const FoodEntries = () => {
             <DateRangePicker
               setDates={setDateRange}
               dates={dateRange}
-              disabled={false}
+              datetoDisable="future"
+              disabled={false}  
             />
           )}
         </div>
