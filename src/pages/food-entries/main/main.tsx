@@ -40,7 +40,7 @@ const FoodEntries = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [update, setUpdate] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<IFoodEntry>();
-  const [newUserLimit, setNewUserLimit] = useState();
+  const [newUserLimit, setNewUserLimit] = useState(3000);
 
   const currentUser = useCurrentUser();
 
